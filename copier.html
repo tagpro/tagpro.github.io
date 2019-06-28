@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Jazz's Cover letter e-copywriter</title>
+  <style media="screen">
+    body {
+      background: #ECEFF1;
+      color: rgba(0, 0, 0, 0.87);
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    @media (max-width: 600px) {
+
+      body,
+      #message {
+        margin-top: 0;
+        background: white;
+        box-shadow: none;
+      }
+
+      body {
+        border-top: 16px solid #ffa100;
+      }
+    }
+
+    textarea {
+      font-size: 12px;
+    }
+    label {
+      min-width: 100px;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="root">
+    <div class="form">
+      <div>
+        <textarea id="cover_letter_body" rows="25" cols="100"></textarea>
+      </div>
+      <div>
+        <label for="company_name">
+          Company
+        </label>
+        <input id="company_name" type="text" name="company">
+      </div>
+      <div>
+
+        <label for="role_name">
+          Role
+        </label>
+        <input id="role_name" type="text" name="role">
+      </div>
+      <div>
+        <label for="source_name">
+          Source
+        </label>
+        <input id="source_name" type="text" name="source">
+      </div>
+      <button class="btn" id="copy">Copy to Clipboard</button>
+    </div>
+  </div>
+
+  <script src="js/clipboard.min.js"></script>
+  <script>
+    String.prototype.replaceAll = function (search, replacement) {
+      var target = this;
+      return target.replace(new RegExp(search, 'g'), replacement);
+    };
+  </script>
+  <script defer>
+    document.getElementById('cover_letter_body').value = `Hi,
+
+I am writing to express my interest in the {role} role that I found out about via {source}. I am currently pursuing Master's in Computing at The Australian National University and am in my 4th and final Semester. Given my past experience, I would like to join {company} where I deliver to the best of my calibre to produce exceptional quality work and the experience gained will help me in improving my skills.
+
+Presently, I will be graduating in July 2019 and will move to Temporary Graduate VISA which allows me to work for 2 years after my Graduation.
+
+In past, I have worked as a Technical Analyst at Hashedin Technologies, India for 2 years. During my contract, my role was to work as a Web Application Developer. I worked on various projects involving Python, Django, ReactJS, and many front-end libraries and frameworks. As a developer, I have attained proficiency working with git as well. I did an internship at Aristotle Metadata registry as a Python/Django developer for 3 months in July 2018. I have also worked at CSIRO from December 2017 to March 2019 on a couple of projects where I have worked on multiple technologies mainly working on EmberJS, ExpressJS and ReactJS.
+
+In future, I would like to work on projects which provide a continuous learning experience and I, in turn, use my skills to build some awesome products.
+
+I appreciate that you took the time to read this application. I hope I get to work at {company} and learn a lot.
+
+Best Regards,
+Jaspreet Singh | +61 450 327 168
+    `;
+    new ClipboardJS('.btn', {
+      text: function (trigger) {
+        let company = document.getElementById('company_name').value;
+        let role = document.getElementById('role_name').value;
+        let source = document.getElementById('source_name').value;
+        let letter = document.getElementById('cover_letter_body').value;
+        letter = letter.replaceAll('{role}', role);
+        letter = letter.replaceAll('{company}', company);
+        letter = letter.replaceAll('{source}', source);
+        return letter;
+      }
+    });
+  </script>
+</body>
+
+</html>
